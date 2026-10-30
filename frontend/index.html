@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vulnerable Box — Notes</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Vulnerable Box <small>notes service</small></h1>
+      <div id="whoami" class="whoami">not signed in</div>
+    </header>
+
+    <main>
+      <section id="auth-section" class="card">
+        <h2>Sign in</h2>
+        <form id="login-form">
+          <input id="login-username" placeholder="username" autocomplete="off" />
+          <input id="login-password" type="password" placeholder="password" autocomplete="off" />
+          <button type="submit">Log in</button>
+        </form>
+        <details>
+          <summary>Create an account</summary>
+          <form id="register-form">
+            <input id="reg-username" placeholder="username" autocomplete="off" />
+            <input id="reg-email" placeholder="email" autocomplete="off" />
+            <input id="reg-password" type="password" placeholder="password" autocomplete="off" />
+            <button type="submit">Register</button>
+          </form>
+        </details>
+        <div id="auth-msg" class="msg"></div>
+      </section>
+
+      <section class="card">
+        <h2>Search public notes</h2>
+        <form id="search-form">
+          <input id="search-input" placeholder="search…" autocomplete="off" />
+          <button type="submit">Search</button>
+        </form>
+        <div id="search-summary" class="msg"></div>
+        <div id="search-results"></div>
+      </section>
+
+      <section class="card">
+        <h2>Public notes</h2>
+        <button id="load-public">Refresh</button>
+        <div id="public-notes"></div>
+      </section>
+
+      <section id="mine-section" class="card hidden">
+        <h2>My notes</h2>
+        <form id="note-form">
+          <input id="note-title" placeholder="title" autocomplete="off" />
+          <textarea id="note-body" placeholder="body"></textarea>
+          <label><input type="checkbox" id="note-public" /> public</label>
+          <button type="submit">Add note</button>
+        </form>
+        <div id="my-notes"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Intentionally vulnerable lab target for security benchmarking. Do not deploy on a
+        public network.
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,3 @@
+# Keep shell scripts LF so they run on Linux regardless of checkout platform.
+*.sh text eol=lf
+reset.sh text eol=lf

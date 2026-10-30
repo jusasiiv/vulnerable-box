@@ -1,0 +1,29 @@
+# Vulnerable Box — lab target. Bind only to a trusted/isolated network.
+services:
+  app:
+    build: .
+    environment:
+      - PORT=3000
+      - JWT_SECRET=devsecret
+      - DB_PATH=/app/backend/data/app.db
+      - UPLOAD_DIR=/app/backend/data/uploads
+    volumes:
+      # Named volume holds the SQLite DB + uploads. `docker compose down -v`
+      # wipes it so the next start reseeds from seed.sql.
+      - appdata:/app/backend/data
+    expose:
+      - "3000"
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.27-alpine
+    depends_on:
+      - app
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    restart: unless-stopped
+
+volumes:
+  appdata:
